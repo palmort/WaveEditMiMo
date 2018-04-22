@@ -26,7 +26,7 @@ static SRC_STATE *audioSrc = NULL;
 long srcCallback(void *cb_data, float **data) {
 	float gain = powf(10.0, playVolume / 20.0);
 	// Generate next samples
-	const int inLen = 64;
+	const int inLen = 33;
 	static float in[inLen];
 	for (int i = 0; i < inLen; i++) {
 		if (morphInterpolate) {

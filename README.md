@@ -1,8 +1,8 @@
 # WaveEditMiMo, based on Synthesis Technology WaveEdit
 
-**Work in progress! Exported wavetable banks have a wrong bit rate.**
+WaveEditMiMo is a fork of the wavetable and bank editor for the Synthesis Technology [E370](http://synthtech.com/eurorack/E370/) and [E352](http://synthtech.com/eurorack/E352/) Eurorack synthesizer modules. It is modified to produce wavetable banks which are compatible with the Audiothingies [MicroMonsta](https://www.audiothingies.com/product/micromonsta/).
 
-WaveEditMiMo is a fork of the wavetable and bank editor for the Synthesis Technology [E370](http://synthtech.com/eurorack/E370/) and [E352](http://synthtech.com/eurorack/E352/) Eurorack synthesizer modules. I'm trying to modify it, so it is able to produce wavetable banks which are compatible with the Audiothingies [MicroMonsta](https://www.audiothingies.com/product/micromonsta/).
+I have not build it on Windows or OSX, because i use Linux. If you like to give it a try on Windows or OSX, please do so and leave me a message if it build successfully. Thank you.
 
 ### Building
 

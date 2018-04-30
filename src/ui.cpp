@@ -259,8 +259,8 @@ static void menuKeyCommands() {
 	}
 	// I have NO idea why the scancode is needed here but the keycodes are needed for the letters.
 	// It looks like SDLZ_F1 is not defined correctly or something.
-	if (ImGui::IsKeyPressed(SDL_SCANCODE_F1))
-		menuManual();
+	/* if (ImGui::IsKeyPressed(SDL_SCANCODE_F1))
+		menuManual(); */
 
 	if (!io.KeySuper && !io.KeyCtrl && !io.KeyShift && !io.KeyAlt) {
 		// Only trigger these key commands if no text box is focused

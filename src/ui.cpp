@@ -120,13 +120,9 @@ static void showCurrentBankPage() {
 	}
 }
 
-static void menuManual() {
-	openBrowser("manual.pdf");
-}
-
-static void menuAbout() {
+/* static void menuAbout() {
 	openBrowser("about.pdf");
-}
+} */
 
 static void menuNewBank() {
 	showCurrentBankPage();
@@ -409,7 +405,7 @@ void renderMenu() {
 			}
 			ImGui::EndMenu();
 		}
-		// Help
+		/* Help
 		if (ImGui::BeginMenu("Help")) {
 			if (ImGui::MenuItem("Manual PDF", "F1", false))
 				menuManual();
@@ -417,7 +413,7 @@ void renderMenu() {
 				menuAbout();
 			// if (ImGui::MenuItem("imgui Demo", NULL, showTestWindow)) showTestWindow = !showTestWindow;
 			ImGui::EndMenu();
-		}
+		} */
 		ImGui::EndMenuBar();
 	}
 }

@@ -536,7 +536,7 @@ void editorPage() {
 		}
 
 		ImGui::Text("Harmonics");
-		if (renderHistogram("HarmonicEditor", 200.0, wave->harmonics, WAVE_LEN, wave->postHarmonics, WAVE_LEN, tool)) {
+		if (renderHistogram("HarmonicEditor", 200.0, wave->harmonics, WAVE_LEN / 2, wave->postHarmonics, WAVE_LEN / 2, tool)) {
 			currentBank.waves[selectedId].commitHarmonics();
 			historyPush();
 		}
@@ -766,11 +766,11 @@ static void refreshStyle() {
 	ImGuiStyle& style = ImGui::GetStyle();
 
 	style.Alpha = 1.f;
-	style.WindowRounding = 1.f;
-	style.GrabRounding = 1.f;
-	style.ChildWindowRounding = 1.f;
-	style.ScrollbarRounding = 1.f;
-	style.FrameRounding = 1.f;
+	style.WindowRounding = 0.f;
+	style.GrabRounding = 0.f;
+	style.ChildWindowRounding = 0.f;
+	style.ScrollbarRounding = 0.f;
+	style.FrameRounding = 0.f;
 	style.FramePadding = ImVec2(4.0f, 4.0f);
 
 	if (styleId == 0) {
@@ -889,7 +889,7 @@ void uiInit() {
 	styleId = 0;
 
 	// Load fonts
-	ImGui::GetIO().Fonts->AddFontFromFileTTF("fonts/Lekton-Regular.ttf", 15.0);
+	ImGui::GetIO().Fonts->AddFontFromFileTTF("fonts/Cantarell-Regular.ttf", 18.0);
 
 	// Load UI settings
 	// If this gets any more complicated, it should be JSON.

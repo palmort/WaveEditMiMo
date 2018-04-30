@@ -145,11 +145,11 @@ struct Wave {
 	/** FFT of wave, interleaved complex numbers */
 	float spectrum[WAVE_LEN];
 	/** Norm of spectrum */
-	float harmonics[WAVE_LEN / 2];
+	float harmonics[WAVE_LEN];
 	/** Wave after effects have been applied */
 	float postSamples[WAVE_LEN];
 	float postSpectrum[WAVE_LEN];
-	float postHarmonics[WAVE_LEN / 2];
+	float postHarmonics[WAVE_LEN];
 
 	float effects[EFFECTS_LEN];
 	bool cycle;

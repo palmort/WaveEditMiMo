@@ -5,17 +5,17 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleName</key>
-	<string>Synthesis Technology WaveEdit</string>
+	<string>WaveEdit for MicroMonsta</string>
 	<key>CFBundleDisplayName</key>
-	<string>WaveEdit</string>
+	<string>WaveEditMiMo</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.synthtech.waveedit</string>
+	<string>WaveEditMiMo</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>WAVE</string>
 	<key>CFBundleExecutable</key>
-	<string>WaveEdit</string>
+	<string>WaveEditMiMo</string>
 	<key>CFBundleIconFile</key>
 	<string>logo</string>
 	<key>NSPrincipalClass</key>

@@ -52,67 +52,67 @@ endif
 
 
 .DEFAULT_GOAL := build
-build: WaveEdit
+build: WaveEditMiMo
 
-run: WaveEdit
-	LD_LIBRARY_PATH=dep/lib ./WaveEdit
+run: WaveEditMiMo
+	LD_LIBRARY_PATH=dep/lib ./WaveEditMiMo
 
-debug: WaveEdit
+debug: WaveEditMiMo
 ifeq ($(ARCH),mac)
-	lldb ./WaveEdit
+	lldb ./WaveEditMiMo
 else
-	gdb -ex 'run' ./WaveEdit
+	gdb -ex 'run' ./WaveEditMiMo
 endif
 
 
 OBJECTS += $(SOURCES:%=build/%.o)
 
 
-WaveEdit: $(OBJECTS)
+WaveEditMiMo: $(OBJECTS)
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
 clean:
-	rm -frv $(OBJECTS) WaveEdit dist
+	rm -frv $(OBJECTS) WaveEditMiMo dist
 
 
 .PHONY: dist
-dist: WaveEdit
-	mkdir -p dist/WaveEdit
-	cp -R banks dist/WaveEdit
-	cp LICENSE* dist/WaveEdit
-	cp doc/manual.pdf dist/WaveEdit
+dist: WaveEditMiMo
+	mkdir -p dist/WaveEditMiMo
+	cp -R banks dist/WaveEditMiMo
+	cp LICENSE* dist/WaveEditMiMo
+	cp doc/manual.pdf dist/WaveEditMiMo
 ifeq ($(ARCH),lin)
-	cp -R logo*.png fonts catalog dist/WaveEdit
-	cp WaveEdit WaveEdit.sh dist/WaveEdit
-	cp dep/lib/libSDL2-2.0.so.0 dist/WaveEdit
-	cp dep/lib/libsamplerate.so.0 dist/WaveEdit
-	cp dep/lib/libsndfile.so.1 dist/WaveEdit
+	cp -R logo*.png fonts catalog dist/WaveEditMiMo
+	cp WaveEditMiMo WaveEditMiMo.sh dist/WaveEditMiMo
+	cp dep/lib/libSDL2-2.0.so.0 dist/WaveEditMiMo
+	cp dep/lib/libsamplerate.so.0 dist/WaveEditMiMo
+	cp dep/lib/libsndfile.so.1 dist/WaveEditMiMo
 else ifeq ($(ARCH),mac)
-	mkdir -p dist/WaveEdit/WaveEdit.app/Contents/MacOS
-	mkdir -p dist/WaveEdit/WaveEdit.app/Contents/Resources
-	cp Info.plist dist/WaveEdit/WaveEdit.app/Contents
-	cp WaveEdit dist/WaveEdit/WaveEdit.app/Contents/MacOS
-	cp -R logo*.png logo.icns fonts catalog dist/WaveEdit/WaveEdit.app/Contents/Resources
+	mkdir -p dist/WaveEditMiMo/WaveEditMiMo.app/Contents/MacOS
+	mkdir -p dist/WaveEditMiMo/WaveEditMiMo.app/Contents/Resources
+	cp Info.plist dist/WaveEditMiMo/WaveEditMiMo.app/Contents
+	cp WaveEditMiMo dist/WaveEditMiMo/WaveEditMiMo.app/Contents/MacOS
+	cp -R logo*.png logo.icns fonts catalog dist/WaveEditMiMo/WaveEditMiMo.app/Contents/Resources
 	# Remap dylibs in executable
-	otool -L dist/WaveEdit/WaveEdit.app/Contents/MacOS/WaveEdit
-	cp dep/lib/libSDL2-2.0.0.dylib dist/WaveEdit/WaveEdit.app/Contents/MacOS
-	install_name_tool -change $(PWD)/dep/lib/libSDL2-2.0.0.dylib @executable_path/libSDL2-2.0.0.dylib dist/WaveEdit/WaveEdit.app/Contents/MacOS/WaveEdit
-	cp dep/lib/libsamplerate.0.dylib dist/WaveEdit/WaveEdit.app/Contents/MacOS
-	install_name_tool -change $(PWD)/dep/lib/libsamplerate.0.dylib @executable_path/libsamplerate.0.dylib dist/WaveEdit/WaveEdit.app/Contents/MacOS/WaveEdit
-	cp dep/lib/libsndfile.1.dylib dist/WaveEdit/WaveEdit.app/Contents/MacOS
-	install_name_tool -change $(PWD)/dep/lib/libsndfile.1.dylib @executable_path/libsndfile.1.dylib dist/WaveEdit/WaveEdit.app/Contents/MacOS/WaveEdit
-	otool -L dist/WaveEdit/WaveEdit.app/Contents/MacOS/WaveEdit
+	otool -L dist/WaveEditMiMo/WaveEditMiMo.app/Contents/MacOS/WaveEditMiMo
+	cp dep/lib/libSDL2-2.0.0.dylib dist/WaveEditMiMo/WaveEditMiMo.app/Contents/MacOS
+	install_name_tool -change $(PWD)/dep/lib/libSDL2-2.0.0.dylib @executable_path/libSDL2-2.0.0.dylib dist/WaveEditMiMo/WaveEditMiMo.app/Contents/MacOS/WaveEditMiMo
+	cp dep/lib/libsamplerate.0.dylib dist/WaveEditMiMo/WaveEditMiMo.app/Contents/MacOS
+	install_name_tool -change $(PWD)/dep/lib/libsamplerate.0.dylib @executable_path/libsamplerate.0.dylib dist/WaveEditMiMo/WaveEditMiMo.app/Contents/MacOS/WaveEditMiMo
+	cp dep/lib/libsndfile.1.dylib dist/WaveEditMiMo/WaveEditMiMo.app/Contents/MacOS
+	install_name_tool -change $(PWD)/dep/lib/libsndfile.1.dylib @executable_path/libsndfile.1.dylib dist/WaveEditMiMo/WaveEditMiMo.app/Contents/MacOS/WaveEditMiMo
+	otool -L dist/WaveEditMiMo/WaveEditMiMo.app/Contents/MacOS/WaveEditMiMo
 else ifeq ($(ARCH),win)
-	cp -R logo*.png fonts catalog dist/WaveEdit
-	cp WaveEdit.exe dist/WaveEdit
-	cp /mingw32/bin/libgcc_s_dw2-1.dll dist/WaveEdit
-	cp /mingw32/bin/libwinpthread-1.dll dist/WaveEdit
-	cp /mingw32/bin/libstdc++-6.dll dist/WaveEdit
-	cp dep/bin/SDL2.dll dist/WaveEdit
-	cp dep/bin/libsamplerate-0.dll dist/WaveEdit
-	cp dep/bin/libsndfile-1.dll dist/WaveEdit
+	cp -R logo*.png fonts catalog dist/WaveEditMiMo
+	cp WaveEditMiMo.exe dist/WaveEditMiMo
+	cp /mingw32/bin/libgcc_s_dw2-1.dll dist/WaveEditMiMo
+	cp /mingw32/bin/libwinpthread-1.dll dist/WaveEditMiMo
+	cp /mingw32/bin/libstdc++-6.dll dist/WaveEditMiMo
+	cp dep/bin/SDL2.dll dist/WaveEditMiMo
+	cp dep/bin/libsamplerate-0.dll dist/WaveEditMiMo
+	cp dep/bin/libsndfile-1.dll dist/WaveEditMiMo
 endif
-	cd dist && zip -9 -r WaveEdit-$(VERSION)-$(ARCH).zip WaveEdit
+	cd dist && zip -9 -r WaveEditMiMo-$(VERSION)-$(ARCH).zip WaveEditMiMo
 
 
 # SUFFIXES:

@@ -35,7 +35,6 @@ static void refreshStyle();
 enum Page {
 	EDITOR_PAGE = 0,
 	EFFECT_PAGE,
-	GRID_PAGE,
 	WATERFALL_PAGE,
 	IMPORT_PAGE,
 	NUM_PAGES
@@ -120,9 +119,9 @@ static void showCurrentBankPage() {
 	}
 }
 
-/* static void menuAbout() {
-	openBrowser("about.pdf");
-} */
+static void menuManual() {
+	openBrowser("manual.pdf");
+}
 
 static void menuNewBank() {
 	showCurrentBankPage();
@@ -259,8 +258,8 @@ static void menuKeyCommands() {
 	}
 	// I have NO idea why the scancode is needed here but the keycodes are needed for the letters.
 	// It looks like SDLZ_F1 is not defined correctly or something.
-	/* if (ImGui::IsKeyPressed(SDL_SCANCODE_F1))
-		menuManual(); */
+	if (ImGui::IsKeyPressed(SDL_SCANCODE_F1))
+		menuManual();
 
 	if (!io.KeySuper && !io.KeyCtrl && !io.KeyShift && !io.KeyAlt) {
 		// Only trigger these key commands if no text box is focused
@@ -277,15 +276,13 @@ static void menuKeyCommands() {
 			if (ImGui::IsKeyPressed(SDLK_2))
 				currentPage = EFFECT_PAGE;
 			if (ImGui::IsKeyPressed(SDLK_3))
-				currentPage = GRID_PAGE;
-			if (ImGui::IsKeyPressed(SDLK_4))
 				currentPage = WATERFALL_PAGE;
-			if (ImGui::IsKeyPressed(SDLK_5))
+			if (ImGui::IsKeyPressed(SDLK_4))
 				currentPage = IMPORT_PAGE;
 			if (ImGui::IsKeyPressed(SDL_SCANCODE_UP))
-				incrementSelectedId(currentPage == GRID_PAGE ? -BANK_GRID_WIDTH : -1);
+				incrementSelectedId(-1);
 			if (ImGui::IsKeyPressed(SDL_SCANCODE_DOWN))
-				incrementSelectedId(currentPage == GRID_PAGE ? BANK_GRID_WIDTH : 1);
+				incrementSelectedId(1);
 			if (ImGui::IsKeyPressed(SDL_SCANCODE_LEFT))
 				incrementSelectedId(-1);
 			if (ImGui::IsKeyPressed(SDL_SCANCODE_RIGHT))
@@ -395,25 +392,23 @@ void renderMenu() {
 		}
 		// Colors
 		if (ImGui::BeginMenu("Colors")) {
-            if (ImGui::MenuItem("Monsta Dark", NULL, styleId == 0)) {
+            if (ImGui::MenuItem("Dark", NULL, styleId == 0)) {
 				styleId = 0;
 				refreshStyle();
 			}
-			if (ImGui::MenuItem("Monsta Light", NULL, styleId == 1)) {
+			if (ImGui::MenuItem("Light", NULL, styleId == 1)) {
 				styleId = 1;
 				refreshStyle();
 			}
 			ImGui::EndMenu();
 		}
-		/* Help
+		// Help
 		if (ImGui::BeginMenu("Help")) {
 			if (ImGui::MenuItem("Manual PDF", "F1", false))
 				menuManual();
-			if (ImGui::MenuItem("About PDF", NULL, false))
-				menuAbout();
 			// if (ImGui::MenuItem("imgui Demo", NULL, showTestWindow)) showTestWindow = !showTestWindow;
 			ImGui::EndMenu();
-		} */
+		}
 		ImGui::EndMenuBar();
 	}
 }
@@ -443,9 +438,9 @@ void renderPreview() {
 		ImGui::PushItemWidth(-1.0);
 		float width = ImGui::CalcItemWidth() / 2.0 - ImGui::GetStyle().FramePadding.y;
 		ImGui::PushItemWidth(width);
-		ImGui::SliderFloat("##Morph Z", &morphZ, 0.0, BANK_LEN - 1, "Morph Z: %.3f");
+		ImGui::SliderFloat("##Morph Z", &morphZ, 0.0, BANK_LEN - 1, "Morph: %.3f");
 		ImGui::SameLine();
-		ImGui::SliderFloat("##Morph Z Speed", &morphZSpeed, 0.f, 10.f, "Morph Z Speed: %.3f Hz", 3.f);
+		ImGui::SliderFloat("##Morph Z Speed", &morphZSpeed, 0.f, 10.f, "Morph Speed: %.3f Hz", 3.f);
 	}
 
 	refreshMorphSnap();
@@ -455,6 +450,8 @@ void renderPreview() {
 void renderToolSelector(Tool *tool) {
 	if (ImGui::RadioButton("Pencil", *tool == PENCIL_TOOL)) *tool = PENCIL_TOOL;
 	ImGui::SameLine();
+	/* if (ImGui::RadioButton("Smooth", *tool == SMOOTH_TOOL)) *tool = SMOOTH_TOOL;
+	ImGui::SameLine(); */
 	if (ImGui::RadioButton("Brush", *tool == BRUSH_TOOL)) *tool = BRUSH_TOOL;
 	ImGui::SameLine();
 	if (ImGui::RadioButton("Grab", *tool == GRAB_TOOL)) *tool = GRAB_TOOL;
@@ -462,8 +459,6 @@ void renderToolSelector(Tool *tool) {
 	if (ImGui::RadioButton("Line", *tool == LINE_TOOL)) *tool = LINE_TOOL;
 	ImGui::SameLine();
 	if (ImGui::RadioButton("Eraser", *tool == ERASER_TOOL)) *tool = ERASER_TOOL;
-	ImGui::SameLine();
-	if (ImGui::RadioButton("Smooth", *tool == SMOOTH_TOOL)) *tool = SMOOTH_TOOL;
 }
 
 
@@ -499,32 +494,6 @@ void editorPage() {
 
 		static enum Tool tool = PENCIL_TOOL;
 		renderToolSelector(&tool);
-
-		// ImGui::Text("Waveform");
-		ImGui::SameLine();
-		if (ImGui::Button("Clear")) {
-			currentBank.waves[selectedId].clear();
-			historyPush();
-		}
-
-
-		for (const CatalogCategory &catalogCategory : catalogCategories) {
-			ImGui::SameLine();
-			if (ImGui::Button(catalogCategory.name.c_str())) ImGui::OpenPopup(catalogCategory.name.c_str());
-			if (ImGui::BeginPopup(catalogCategory.name.c_str())) {
-				for (const CatalogFile &catalogFile : catalogCategory.files) {
-					if (ImGui::Selectable(catalogFile.name.c_str())) {
-						memcpy(currentBank.waves[selectedId].samples, catalogFile.samples, sizeof(float) * WAVE_LEN);
-						currentBank.waves[selectedId].commitSamples();
-						historyPush();
-					}
-				}
-				ImGui::EndPopup();
-			}
-		}
-
-		// ImGui::SameLine();
-		// if (ImGui::RadioButton("Smooth", tool == SMOOTH_TOOL)) tool = SMOOTH_TOOL;
 
 		ImGui::Text("Waveform");
 		const int oversample = 4;
@@ -731,7 +700,6 @@ void renderMain() {
 			static const char *tabLabels[NUM_PAGES] = {
 				"Waveform Editor",
 				"Effect Editor",
-				"Grid XY View",
 				"Waterfall View",
 				"Import",
 			};
@@ -746,7 +714,6 @@ void renderMain() {
 		switch (currentPage) {
 		case EDITOR_PAGE: editorPage(); break;
 		case EFFECT_PAGE: effectPage(); break;
-		case GRID_PAGE: gridPage(); break;
 		case WATERFALL_PAGE: waterfallPage(); break;
 		case IMPORT_PAGE: importPage(); break;
 		default: break;
@@ -780,7 +747,7 @@ static void refreshStyle() {
 			ImGui::ColorConvertU32ToFloat4(IM_COL32(0xa1, 0xa1, 0xa2, 0xff)), //fg
 			ImGui::ColorConvertU32ToFloat4(IM_COL32(0x31, 0x31, 0x32, 0xff)), //bg
 			ImGui::ColorConvertU32ToFloat4(IM_COL32(0x11, 0x11, 0x12, 0xff)), //dark bg
-			ImGui::ColorConvertU32ToFloat4(IM_COL32(0x61, 0xc1, 0x02, 0xff)), //highlight
+			ImGui::ColorConvertU32ToFloat4(IM_COL32(0x39, 0x83, 0x32, 0xff)), //highlight
 		};
 
 		style.Colors[ImGuiCol_Text]                 = base[0x0];
@@ -821,8 +788,8 @@ static void refreshStyle() {
 		style.Colors[ImGuiCol_CloseButtonHovered]   = lighten(base[0x2], 0.05);
 		style.Colors[ImGuiCol_CloseButtonActive]    = lighten(base[0x2], 0.05);
 		style.Colors[ImGuiCol_PlotLines]            = alpha(base[0x1], 0.5);
-		style.Colors[ImGuiCol_PlotLinesHovered]     = alpha(base[0x4], 0.5);
-		style.Colors[ImGuiCol_PlotHistogram]        = alpha(base[0x4], 0.5);
+		style.Colors[ImGuiCol_PlotLinesHovered]     = alpha(base[0x1], 0.5);
+		style.Colors[ImGuiCol_PlotHistogram]        = alpha(base[0x1], 0.5);
 		style.Colors[ImGuiCol_PlotHistogramHovered] = alpha(base[0x1], 0.5);
 		style.Colors[ImGuiCol_TextSelectedBg]       = base[0x3];
 		style.Colors[ImGuiCol_ModalWindowDarkening] = alpha(base[0x2], 0.5);
@@ -834,7 +801,7 @@ static void refreshStyle() {
 			ImGui::ColorConvertU32ToFloat4(IM_COL32(0x51, 0x51, 0x50, 0xff)), //fg
 			ImGui::ColorConvertU32ToFloat4(IM_COL32(0xd8, 0xd8, 0xd7, 0xff)), //bg
 			ImGui::ColorConvertU32ToFloat4(IM_COL32(0xae, 0xae, 0xad, 0xff)), //dark bg
-			ImGui::ColorConvertU32ToFloat4(IM_COL32(0x61, 0xc1, 0x02, 0xff)), //highlight
+			ImGui::ColorConvertU32ToFloat4(IM_COL32(0x39, 0x83, 0x32, 0xff)), //highlight
 		};
 
 		style.Colors[ImGuiCol_Text]                 = base[0x0];
@@ -875,8 +842,8 @@ static void refreshStyle() {
 		style.Colors[ImGuiCol_CloseButtonHovered]   = lighten(base[0x2], 0.25);
 		style.Colors[ImGuiCol_CloseButtonActive]    = lighten(base[0x2], 0.25);
 		style.Colors[ImGuiCol_PlotLines]            = alpha(base[0x1], 0.5);
-		style.Colors[ImGuiCol_PlotLinesHovered]     = alpha(base[0x4], 0.5);
-		style.Colors[ImGuiCol_PlotHistogram]        = alpha(base[0x4], 0.5);
+		style.Colors[ImGuiCol_PlotLinesHovered]     = alpha(base[0x1], 0.5);
+		style.Colors[ImGuiCol_PlotHistogram]        = alpha(base[0x1], 0.5);
 		style.Colors[ImGuiCol_PlotHistogramHovered] = alpha(base[0x1], 0.5);
 		style.Colors[ImGuiCol_TextSelectedBg]       = base[0x3];
 		style.Colors[ImGuiCol_ModalWindowDarkening] = alpha(base[0x2], 0.5);

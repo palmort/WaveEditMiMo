@@ -81,7 +81,6 @@ int main(int argc, char **argv) {
 	historyClear();
 	currentBank.load("autosave.dat");
 	historyPush();
-	catalogInit();
 	audioInit();
 
 	// Main loop
@@ -108,10 +107,10 @@ int main(int argc, char **argv) {
 			snprintf(lastBasename, sizeof(lastBasename), "%s", lastFilename);
 			lastBasenameP = basename(lastBasename);
 #endif
-			snprintf(newTitle, sizeof(newTitle), "Synthesis Technology WaveEdit - %s", lastBasenameP);
+			snprintf(newTitle, sizeof(newTitle), "WaveEdit for MicroMonsta - %s", lastBasenameP);
 		}
 		else {
-			snprintf(newTitle, sizeof(newTitle), "Synthesis Technology WaveEdit");
+			snprintf(newTitle, sizeof(newTitle), "WaveEdit for MicroMonsta");
 		}
 		if (strcmp(title, newTitle) != 0) {
 			SDL_SetWindowTitle(window, newTitle);

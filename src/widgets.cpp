@@ -59,18 +59,17 @@ static void waveLine(float *points, int pointsLen, float startIndex, float endIn
 }
 
 
-static void waveSmooth(float *points, int pointsLen, float index) {
+/* static void waveSmooth(float *points, int pointsLen, float index) {
 	// TODO
 	for (int i = 0; i <= pointsLen - 1; i++) {
 		const float a = 0.05;
 		float w = expf(-a * powf(i - index, 2.0));
 		points[i] = clampf(points[i] + 0.01 * w, -1.0, 1.0);
 	}
-}
-
+} */
 
 static void waveBrush(float *points, int pointsLen, float startIndex, float endIndex, float startValue, float endValue) {
-	const float sigma = 10.0;
+	const float sigma = 5.0;
 	for (int i = 0; i < pointsLen; i++) {
 		float x = i - startIndex;
 		// float a;
@@ -129,6 +128,10 @@ static bool editorBehavior(ImGuiID id, const ImRect& box, const ImRect& inner, f
 			else if (tool == BRUSH_TOOL) {
 				waveBrush(points, pointsLen, lastIndex, index, lastValue, value);
 			}
+			/* Smooth tool
+			else if (tool == SMOOTH_TOOL) {
+				waveSmooth(points, pointsLen, lastIndex, index, lastValue, value);
+			} */
 			// Line tool
 			else if (tool == LINE_TOOL) {
 				// TODO Restore points from when it was originally clicked, using undo history
@@ -138,10 +141,10 @@ static bool editorBehavior(ImGuiID id, const ImRect& box, const ImRect& inner, f
 			else if (tool == ERASER_TOOL) {
 				waveLine(points, pointsLen, lastIndex, index, 0.0, 0.0);
 			}
-			// Smooth tool
+			/* Smooth tool
 			else if (tool == SMOOTH_TOOL) {
 				waveSmooth(points, pointsLen, lastIndex);
-			}
+			} */
 
 			for (int i = 0; i < pointsLen; i++) {
 				points[i] = clampf(points[i], fminf(minValue, maxValue), fmaxf(minValue, maxValue));

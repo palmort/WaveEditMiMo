@@ -8,7 +8,7 @@
 #include <shellapi.h>
 #endif
 
-/* void openBrowser(const char *url) {
+void openBrowser(const char *url) {
 	// shell injection is possible if the URL is not trusted
 #if defined(__linux__)
 	char command[1024];
@@ -23,7 +23,7 @@
 #if defined(_WIN32)
 	ShellExecute(NULL, "open", url, NULL, NULL, SW_SHOWNORMAL);
 #endif
-} */
+}
 
 
 float *loadAudio(const char *filename, int *length) {

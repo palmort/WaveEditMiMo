@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 67.733332 67.733335"
+   height="256"
+   width="256">
+  <defs
+     id="defs2">
+    <filter
+       height="1.2436895"
+       y="-0.12184477"
+       width="1.2364205"
+       x="-0.11821026"
+       id="filter1195"
+       style="color-interpolation-filters:sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur1197"
+         stdDeviation="8.5979491" />
+    </filter>
+  </defs>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(0,-229.26665)"
+     id="layer1">
+    <circle
+       r="32.543751"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.05833328;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle1138"
+       cx="33.866665"
+       cy="263.13333" />
+    <path
+       id="path1117"
+       transform="matrix(0.26458333,0,0,0.26458333,0,229.26665)"
+       d="M 100.13086 43.322266 L 96.761719 44.853516 L 116.66797 87.728516 L 120.65039 86.808594 L 120.34375 63.535156 L 100.13086 43.322266 z M 155.86914 43.322266 L 135.65625 63.535156 L 135.34961 86.808594 L 139.33203 87.728516 L 159.23828 44.853516 L 155.86914 43.322266 z M 94.005859 45.160156 L 40.71875 67.208984 L 51.130859 83.134766 L 95.537109 47.916016 L 94.005859 45.160156 z M 161.99414 45.160156 L 160.46289 47.916016 L 204.86914 83.134766 L 215.28125 67.208984 L 161.99414 45.160156 z M 128 88.953125 L 88.800781 96.609375 L 73.488281 109.47266 L 69.8125 121.10938 L 91.556641 116.82227 L 106.25586 137.03516 L 100.4375 161.22852 L 84.818359 170.10938 L 128 212.67773 L 171.18164 170.10938 L 155.5625 161.22852 L 149.74414 137.03516 L 164.44336 116.82227 L 186.1875 121.10938 L 182.51172 109.47266 L 167.19922 96.609375 L 128 88.953125 z M 79 124.17188 A 20.518754 20.518754 0 0 0 58.480469 144.69141 A 20.518754 20.518754 0 0 0 79 165.20898 A 20.518754 20.518754 0 0 0 99.519531 144.69141 A 20.518754 20.518754 0 0 0 79 124.17188 z M 177 124.17188 A 20.518754 20.518754 0 0 0 156.48047 144.69141 A 20.518754 20.518754 0 0 0 177 165.20898 A 20.518754 20.518754 0 0 0 197.51953 144.69141 A 20.518754 20.518754 0 0 0 177 124.17188 z "
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.00000003;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter1195)" />
+    <path
+       id="path1098"
+       d="m 26.492957,240.729 -0.891419,0.40514 5.266862,11.34401 1.053682,-0.24339 -0.08113,-6.15777 z m 14.74742,0 -5.347994,5.34799 -0.08113,6.15777 1.053682,0.24339 5.266862,-11.34401 z m -16.367993,0.48627 -14.098881,5.83376 2.75487,4.21369 11.749154,-9.31829 z m 17.988565,0 -0.405143,0.72916 11.749154,9.31829 2.75487,-4.21369 z m -8.994282,11.58689 -10.37146,2.02572 -4.051432,3.40341 -0.972551,3.07888 5.753137,-1.13429 3.889169,5.34799 -1.539441,6.40116 -4.132565,2.34973 11.425143,11.26287 11.425142,-11.26287 -4.132564,-2.34973 -1.539441,-6.40116 3.889168,-5.34799 5.753137,1.13429 -0.97255,-3.07888 -4.051432,-3.40341 z m -12.964584,9.3183 a 5.4289203,5.4289203 0 0 0 -5.429125,5.42913 5.4289203,5.4289203 0 0 0 5.429125,5.4286 5.4289203,5.4289203 0 0 0 5.429126,-5.4286 5.4289203,5.4289203 0 0 0 -5.429126,-5.42913 z m 25.929167,0 a 5.4289203,5.4289203 0 0 0 -5.429126,5.42913 5.4289203,5.4289203 0 0 0 5.429126,5.4286 5.4289203,5.4289203 0 0 0 5.429125,-5.4286 5.4289203,5.4289203 0 0 0 -5.429125,-5.42913 z"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.08102866px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <circle
+       r="31.75"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.52916667;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle1140"
+       cx="33.866665"
+       cy="263.13333" />
+  </g>
+</svg>

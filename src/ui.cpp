@@ -856,7 +856,7 @@ void uiInit() {
 	styleId = 0;
 
 	// Load fonts
-	ImGui::GetIO().Fonts->AddFontFromFileTTF("fonts/Cantarell-Regular.ttf", 18.0);
+	ImGui::GetIO().Fonts->AddFontFromFileTTF("font.ttf", 18.0);
 
 	// Load UI settings
 	// If this gets any more complicated, it should be JSON.

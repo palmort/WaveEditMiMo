@@ -12,13 +12,13 @@ endif
 sdl2 = SDL2-2.0.7
 libsndfile = libsndfile-1.0.28
 libsamplerate = libsamplerate-0.1.9
-inconsolata = inconsolata
+fonts = Cantarell
 
 
 # This instance of make should be serialized, but -j flags are passed down to each recursive Makefile
 .NOTPARALLEL:
 
-all: $(sdl2) $(jansson) $(libsndfile) $(libsamplerate) $(libcurl) $(inconsolata)
+all: $(sdl2) $(jansson) $(libsndfile) $(libsamplerate) $(libcurl) $(fonts)
 
 $(sdl2):
 	wget -nc https://www.libsdl.org/release/$@.tar.gz
@@ -41,9 +41,10 @@ $(libsamplerate):
 	$(MAKE) -C $@
 	$(MAKE) -C $@ install
 
-$(inconsolata):
-	mkdir -p ../fonts
-	wget -nc https://github.com/google/fonts/raw/master/ofl/cantarell/Cantarell-Regular.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/cantarell/OFL.txt -P ../fonts/
+$(fonts):
+	mkdir -p fonts
+	cd fonts && wget -O $@.zip "https://fonts.google.com/download?family=$@" && unzip -o $@.zip && rm $@.zip
+	cp fonts/$@-Regular.ttf ../font.ttf
 
 clean:
 	git clean -fdx

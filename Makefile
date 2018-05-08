@@ -81,7 +81,7 @@ dist: WaveEditMiMo
 	cp LICENSE* dist/WaveEditMiMo
 	cp doc/manual.pdf dist/WaveEditMiMo
 ifeq ($(ARCH),lin)
-	cp -R logo.png logo.svg fonts dist/WaveEditMiMo
+	cp -R logo.png logo.svg OFL.txt font.ttf dist/WaveEditMiMo
 	cp WaveEditMiMo WaveEditMiMo.sh dist/WaveEditMiMo
 	cp dep/lib/libSDL2-2.0.so.0 dist/WaveEditMiMo
 	cp dep/lib/libsamplerate.so.0 dist/WaveEditMiMo
@@ -91,7 +91,7 @@ else ifeq ($(ARCH),mac)
 	mkdir -p dist/WaveEditMiMo/WaveEditMiMo.app/Contents/Resources
 	cp Info.plist dist/WaveEditMiMo/WaveEditMiMo.app/Contents
 	cp WaveEditMiMo dist/WaveEditMiMo/WaveEditMiMo.app/Contents/MacOS
-	cp -R logo.icns fonts dist/WaveEditMiMo/WaveEditMiMo.app/Contents/Resources
+	cp -R logo.icns OFL.txt font.ttf dist/WaveEditMiMo/WaveEditMiMo.app/Contents/Resources
 	# Remap dylibs in executable
 	otool -L dist/WaveEditMiMo/WaveEditMiMo.app/Contents/MacOS/WaveEditMiMo
 	cp dep/lib/libSDL2-2.0.0.dylib dist/WaveEditMiMo/WaveEditMiMo.app/Contents/MacOS
@@ -102,7 +102,7 @@ else ifeq ($(ARCH),mac)
 	install_name_tool -change $(PWD)/dep/lib/libsndfile.1.dylib @executable_path/libsndfile.1.dylib dist/WaveEditMiMo/WaveEditMiMo.app/Contents/MacOS/WaveEditMiMo
 	otool -L dist/WaveEditMiMo/WaveEditMiMo.app/Contents/MacOS/WaveEditMiMo
 else ifeq ($(ARCH),win)
-	cp -R fonts dist/WaveEditMiMo
+	cp font.ttf OFL.txt dist/WaveEditMiMo
 	cp WaveEditMiMo.exe dist/WaveEditMiMo
 	cp /mingw32/bin/libgcc_s_dw2-1.dll dist/WaveEditMiMo
 	cp /mingw32/bin/libwinpthread-1.dll dist/WaveEditMiMo

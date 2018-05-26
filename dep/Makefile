@@ -45,6 +45,7 @@ $(fonts):
 	mkdir -p fonts
 	cd fonts && wget -O $@.zip "https://fonts.google.com/download?family=$@" && unzip -o $@.zip && rm $@.zip
 	cp fonts/$@-Regular.ttf ../font.ttf
+	cp fonts/OFL.txt ../OFL.txt
 
 clean:
 	git clean -fdx
